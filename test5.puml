@@ -1,0 +1,290 @@
+@startuml
+class ca.teamgeneric.sensordata.Logger {
+- File logFileDir
+- File logFile
++ <<Create>> Logger(File)
++ void e(Context,String,String)
++ void e(Context,String,String,Throwable)
++ void w(Context,String,String)
++ void w(Context,String,String,Throwable)
++ void i(Context,String,String)
++ void i(Context,String,String,Throwable)
++ void v(Context,String,String)
++ void v(Context,String,String,Throwable)
++ void d(Context,String,String)
++ void d(Context,String,String,Throwable)
+- String getDateTimeStamp()
+- void logToFile(Context,String,String)
+}
+class ca.teamgeneric.sensordata.SensorService {
++ {static} String TAG
++ {static} int SCREEN_OFF_RECEIVER_DELAY
+~ short POLL_FREQUENCY
+- long lastUpdate
+~ long curTime
+- Messenger messageHandler
+- SensorManager sensorManager
+- WakeLock wakeLock
+~ ExecutorService executor
+~ DBHelper dbHelper
+~ Sensor sensor
+~ Sensor accelerometer
+~ Sensor gyroscope
+~ Sensor gravity
+~ Sensor magnetic
+~ float[] accelerometerMatrix
+~ float[] gyroscopeMatrix
+~ float[] gravityMatrix
+~ float[] magneticMatrix
++ BroadcastReceiver receiver
+- void registerListener()
+- void unregisterListener()
++ void sendMessage(String)
++ void onAccuracyChanged(Sensor,int)
++ void onSensorChanged(SensorEvent)
++ void onCreate()
++ IBinder onBind(Intent)
++ int onStartCommand(Intent,int,int)
++ void onDestroy()
+}
+class ca.teamgeneric.sensordata.SensorService.InsertHandler {
+~ long curTime
+~ float[] accelerometerMatrix
+~ float[] gyroscopeMatrix
+~ float[] gravityMatrix
+~ float[] magneticMatrix
++ <<Create>> InsertHandler(long,float[],float[],float[],float[])
++ void run()
+}
+class ca.teamgeneric.sensordata.SaveRecording {
+- {static} String TAG
+~ boolean exportDataCSV
+~ Button saveButton
+~ TextView explanationText
+~ MainActivity mainActivity
+~ CoordinatorLayout coordinatorLayout
+~ DBHelper dbHelper
+~ Boolean sessionDataExists
+~ MediaScanner mediaScanner
+~ {static} ProgressDialog dialog
++ <<Create>> SaveRecording()
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onClick(View)
+- void quitSession()
+}
+class ca.teamgeneric.sensordata.SaveRecording.DatabaseHandler {
++ void handleMessage(Message)
+}
+class ca.teamgeneric.sensordata.SaveRecording.ExportDatabaseCSVTask {
+# void onPreExecute()
+# Boolean doInBackground(String)
++ void onProgressUpdate(Integer)
+# void onPostExecute(Boolean)
+- List<String> getListFiles(File)
+}
+class ca.teamgeneric.sensordata.RootActivity {
+~ Button proceedButton
+~ String[] PERMISSIONS
+# void onCreate(Bundle)
++ boolean hasPermission(String)
++ void onRequestPermissionsResult(int,String[],int[])
++ void showItems(Boolean)
++ boolean arePermissionsGranted(int[])
++ void authenticateUser(View)
+}
+class ca.teamgeneric.sensordata.SessionInfo {
++ {static} String TAG
+~ MainActivity mainActivity
+~ Button deleteButton
+~ TextView deleteMessage
+~ DBHelper dbHelper
+~ ProgressDialog dialog
+~ CoordinatorLayout coordinatorLayout
++ <<Create>> SessionInfo()
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onClick(View)
+}
+class ca.teamgeneric.sensordata.SessionInfo.DeleteSessionTask {
+# void onPreExecute()
+# Boolean doInBackground(String)
+# void onPostExecute(Boolean)
+}
+class ca.teamgeneric.sensordata.MainActivity {
++ {static} String TAG
+~ NavigationView navigationView
+~ Menu optionsMenu
+~ Toolbar toolbar
+~ DrawerLayout drawer
+~ LayoutInflater inflater
+~ ActionBarDrawerToggle hamburger
+~ FragmentManager fragmentManager
+~ SensorManager mSensorManager
+~ DBHelper dbHelper
++ Logger logger
++ {static} Boolean dataRecordStarted
++ {static} Boolean dataRecordCompleted
++ {static} Boolean sessionCreated
++ {static} short TYPE_ACCELEROMETER
++ {static} short TYPE_GYROSCOPE
++ {static} short TYPE_GRAVITY
++ {static} short TYPE_MAGNETIC
+# void onCreate(Bundle)
++ boolean onCreateOptionsMenu(Menu)
+# void onDestroy()
++ void onBackPressed()
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onNavigationItemSelected(MenuItem)
++ void addFragment(Fragment,Boolean)
++ String getSensorAvailable(short)
+}
+class ca.teamgeneric.sensordata.StartRecording {
++ {static} String TAG
+~ Button startButton
+~ CoordinatorLayout coordinatorLayout
+~ DBHelper dbHelper
+~ TextView recordProgressMessage
+~ {static} MainActivity mainActivity
+~ {static} ProgressDialog stopDialog
++ {static} Handler messageHandler
++ <<Create>> StartRecording()
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onClick(View)
+}
+class ca.teamgeneric.sensordata.StartRecording.MessageHandler {
++ void handleMessage(Message)
+}
+class ca.teamgeneric.sensordata.MediaScanner {
+- String TAG
+# void scanFile(Context,String[],String[],Logger)
+}
+class ca.teamgeneric.sensordata.NewSession {
++ {static} String TAG
+~ MainActivity mainActivity
+~ CoordinatorLayout coordinatorLayout
+~ DBHelper dbHelper
+~ TextInputLayout sessionNumWrapper
+~ Button createButton
++ <<Create>> NewSession()
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onClick(View)
++ boolean isEmpty(String)
++ void showKeyboard(Boolean,MainActivity)
+}
+class ca.teamgeneric.sensordata.DBHelper {
++ {static} String TAG
+~ SQLiteDatabase db
+~ CSVWriter csvWrite
+~ Cursor curCSV
+~ {static} Handler messageHandler
+- {static} DBHelper sInstance
++ {static} String DATABASE_NAME
+- {static} int DATABASE_VERSION
++ String databasePath
++ {static} String SESSION_TABLE_NAME
++ {static} String SESSION_TABLE_NAME_TEMP
++ {static} String SESSION_ID
++ {static} String SESSION_DATE
++ {static} String SESSION_START_TIME
+- {static} String SESSION_TABLE_STRUCTURE
+- {static} String SESSION_TABLE_CREATE
+- {static} String SESSION_TABLE_CREATE_TEMP
++ {static} String DATA_TABLE_NAME
++ {static} String DATA_TABLE_NAME_TEMP
++ {static} String DATA_SESSION
++ {static} String DATA_TIME
++ {static} String DATA_ACCX
++ {static} String DATA_ACCY
++ {static} String DATA_ACCZ
++ {static} String DATA_GYROX
++ {static} String DATA_GYROY
++ {static} String DATA_GYROZ
++ {static} String DATA_GRAVX
++ {static} String DATA_GRAVY
++ {static} String DATA_GRAVZ
++ {static} String DATA_MAGX
++ {static} String DATA_MAGY
++ {static} String DATA_MAGZ
+- {static} String DATA_TABLE_STRUCTURE
+- {static} String DATA_TABLE_CREATE
+- {static} String DATA_TABLE_CREATE_TEMP
+- <<Create>> DBHelper(Context)
++ {static} DBHelper getInstance(Context)
++ {static} DBHelper getInstance(Context,Handler)
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ void onOpen(SQLiteDatabase)
++ void closeDB()
++ void createTempTables(SQLiteDatabase)
++ boolean checkSessionExists(Short)
++ boolean checkSessionDataExists(Short)
++ void insertSessionTemp(Short,String,long)
++ void setStartTime(Short,long)
++ String getTempSessionInfo(String)
++ void deleteSession()
++ void insertDataTemp(short,long,float[],float[],float[],float[])
++ void copyTempData()
++ void exportTrackingSheet(File)
++ void exportSessionData(File,String)
+}
+class ca.teamgeneric.sensordata.RealTimeData {
+~ short POLL_FREQUENCY
+- long lastUpdate
+- SensorManager sensorManager
+~ Sensor sensor
+- Sensor accelerometer
+- Sensor gyroscope
+- Sensor gravity
+- Sensor magnetic
+~ MainActivity mainActivity
+~ TextView accX
+~ TextView accY
+~ TextView accZ
+~ TextView gyroX
+~ TextView gyroY
+~ TextView gyroZ
+~ TextView gravX
+~ TextView gravY
+~ TextView gravZ
+~ TextView magX
+~ TextView magY
+~ TextView magZ
+~ float[] accelerometerMatrix
+~ float[] gyroscopeMatrix
+~ float[] gravityMatrix
+~ float[] magneticMatrix
++ <<Create>> RealTimeData()
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onResume()
++ void onPause()
++ void onSensorChanged(SensorEvent)
++ void onAccuracyChanged(Sensor,int)
+}
+
+
+android.hardware.SensorEventListener <|.. ca.teamgeneric.sensordata.SensorService
+android.app.Service <|-- ca.teamgeneric.sensordata.SensorService
+ca.teamgeneric.sensordata.SensorService +.. ca.teamgeneric.sensordata.SensorService.InsertHandler
+ca.teamgeneric.sensordata.Runnable <|.. ca.teamgeneric.sensordata.SensorService.InsertHandler
+ca.teamgeneric.sensordata.OnClickListener <|.. ca.teamgeneric.sensordata.SaveRecording
+android.support.v4.app.Fragment <|-- ca.teamgeneric.sensordata.SaveRecording
+ca.teamgeneric.sensordata.SaveRecording +.. ca.teamgeneric.sensordata.SaveRecording.DatabaseHandler
+ca.teamgeneric.sensordata.Handler <|-- ca.teamgeneric.sensordata.SaveRecording.DatabaseHandler
+ca.teamgeneric.sensordata.SaveRecording +.. ca.teamgeneric.sensordata.SaveRecording.ExportDatabaseCSVTask
+ca.teamgeneric.sensordata.AsyncTask <|-- ca.teamgeneric.sensordata.SaveRecording.ExportDatabaseCSVTask
+android.support.v7.app.AppCompatActivity <|-- ca.teamgeneric.sensordata.RootActivity
+ca.teamgeneric.sensordata.OnClickListener <|.. ca.teamgeneric.sensordata.SessionInfo
+android.support.v4.app.Fragment <|-- ca.teamgeneric.sensordata.SessionInfo
+ca.teamgeneric.sensordata.SessionInfo +.. ca.teamgeneric.sensordata.SessionInfo.DeleteSessionTask
+ca.teamgeneric.sensordata.AsyncTask <|-- ca.teamgeneric.sensordata.SessionInfo.DeleteSessionTask
+ca.teamgeneric.sensordata.OnNavigationItemSelectedListener <|.. ca.teamgeneric.sensordata.MainActivity
+android.support.v7.app.AppCompatActivity <|-- ca.teamgeneric.sensordata.MainActivity
+ca.teamgeneric.sensordata.OnClickListener <|.. ca.teamgeneric.sensordata.StartRecording
+android.support.v4.app.Fragment <|-- ca.teamgeneric.sensordata.StartRecording
+ca.teamgeneric.sensordata.StartRecording +.. ca.teamgeneric.sensordata.StartRecording.MessageHandler
+ca.teamgeneric.sensordata.Handler <|-- ca.teamgeneric.sensordata.StartRecording.MessageHandler
+ca.teamgeneric.sensordata.OnClickListener <|.. ca.teamgeneric.sensordata.NewSession
+android.support.v4.app.Fragment <|-- ca.teamgeneric.sensordata.NewSession
+android.database.sqlite.SQLiteOpenHelper <|-- ca.teamgeneric.sensordata.DBHelper
+android.hardware.SensorEventListener <|.. ca.teamgeneric.sensordata.RealTimeData
+android.support.v4.app.Fragment <|-- ca.teamgeneric.sensordata.RealTimeData
+@enduml

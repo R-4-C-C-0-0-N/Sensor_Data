@@ -1,0 +1,43 @@
+ca/teamgeneric/sensordata/RootActivity.java
+ ca.teamgeneric.sensordata.RootActivity
+ ca.teamgeneric.sensordata.RootActivity$1
+ca/teamgeneric/sensordata/SessionInfo.java
+ ca.teamgeneric.sensordata.SessionInfo
+ ca.teamgeneric.sensordata.SessionInfo$1
+ ca.teamgeneric.sensordata.SessionInfo$2
+ ca.teamgeneric.sensordata.SessionInfo$DeleteSessionTask
+ ca.teamgeneric.sensordata.SessionInfo$DeleteSessionTask$1
+ca/teamgeneric/sensordata/DBHelper.java
+ ca.teamgeneric.sensordata.DBHelper
+ca/teamgeneric/sensordata/NewSession.java
+ ca.teamgeneric.sensordata.NewSession
+ca/teamgeneric/sensordata/BuildConfig.java
+ ca.teamgeneric.sensordata.BuildConfig
+ca/teamgeneric/sensordata/Logger.java
+ ca.teamgeneric.sensordata.Logger
+ca/teamgeneric/sensordata/MainActivity.java
+ ca.teamgeneric.sensordata.MainActivity
+ ca.teamgeneric.sensordata.MainActivity$1
+ca/teamgeneric/sensordata/StartRecording.java
+ ca.teamgeneric.sensordata.StartRecording
+ ca.teamgeneric.sensordata.StartRecording$MessageHandler
+ca/teamgeneric/sensordata/RealTimeData.java
+ ca.teamgeneric.sensordata.RealTimeData
+ca/teamgeneric/sensordata/SensorService.java
+ ca.teamgeneric.sensordata.SensorService
+ ca.teamgeneric.sensordata.SensorService$1
+ ca.teamgeneric.sensordata.SensorService$1$1
+ ca.teamgeneric.sensordata.SensorService$2
+ ca.teamgeneric.sensordata.SensorService$InsertHandler
+ca/teamgeneric/sensordata/MediaScanner.java
+ ca.teamgeneric.sensordata.MediaScanner
+ ca.teamgeneric.sensordata.MediaScanner$1
+ca/teamgeneric/sensordata/SaveRecording.java
+ ca.teamgeneric.sensordata.SaveRecording
+ ca.teamgeneric.sensordata.SaveRecording$1
+ ca.teamgeneric.sensordata.SaveRecording$2
+ ca.teamgeneric.sensordata.SaveRecording$DatabaseHandler
+ ca.teamgeneric.sensordata.SaveRecording$ExportDatabaseCSVTask
+ ca.teamgeneric.sensordata.SaveRecording$ExportDatabaseCSVTask$1
+ ca.teamgeneric.sensordata.SaveRecording$ExportDatabaseCSVTask$2
+ ca.teamgeneric.sensordata.SaveRecording$ExportDatabaseCSVTask$3

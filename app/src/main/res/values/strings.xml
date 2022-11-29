@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Sensor Data</string>
+
+    <string name="proceed_button_text">PROCEED</string>
+
+    <string name="snackbar_request_permission">Request</string>
+    <string name="snackbar_dismiss">Dismiss</string>
+
+    <string name="permission_explain">Hardware permissions required for this app to work</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_new">New</string>
+    <string name="nav_start">Start</string>
+    <string name="nav_save">Save &amp; Quit</string>
+    <string name="nav_real">Realtime Data</string>
+
+    <string name="settings_menu_device_info">Device Info</string>
+
+    <string name="input_text_sessionnum">Session Number</string>
+    <string name="input_button_save">Create</string>
+
+    <string name="real_acc_header">Accelerometer</string>
+    <string name="real_gyro_header">Gyroscope</string>
+    <string name="real_grav_header">Gravity Sensor</string>
+    <string name="real_mag_header">Magnetometer</string>
+
+    <string name="sessionInfo_label_date">Date:</string>
+    <string name="sessionInfo_label_sessionNum">Ssession Number:</string>
+    <string name="sessionInfo_label_delete_button">Delete session</string>
+    <string name="sessionInfo_message_recording">(Cannot delete while recording data)</string>
+
+    <string name="start_label_sessionNum">Session Number:</string>
+    <string name="start_button_label_start">Start</string>
+    <string name="start_button_label_stop">Stop</string>
+    <string name="start_recording_complete">Recording complete.</string>
+    <string name="start_recording">Recording…</string>
+    <string name="start_recording_progress">(recording in progress)</string>
+
+    <string name="save_button_text">Save &#038; Quit Session</string>
+    <string name="save_button_text_quit">Quit Session</string>
+    <string name="save_instruction_text">Sensor data collected. Click to save the data and quit the current session:</string>
+    <string name="save_no_data_text">No sensor data collected. Click to quit the current session:</string>
+    <string name="save_message_recording">Cannot save or quit while recording data</string>
+
+    <string name="button_close">Close</string>
+
+    <string name="device_info_title">Device Information</string>
+    <string name="device_model_label">Model:</string>
+    <string name="device_android_version_label">Android version:</string>
+
+    <string name="device_sensors_label">Sensors:</string>
+    <string name="device_sensors_explanation">(availability and hardware vendor)</string>
+
+    <string name="device_accelerometer_label">Accelerometer:</string>
+    <string name="device_gyroscope_label">Gyroscope:</string>
+    <string name="device_gravity_label">Gravity:</string>
+    <string name="device_magnetometer_label">Magnetometer:</string>
+
+</resources>

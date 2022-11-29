@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/sessionInfo_layout_padding"
+    tools:context=".SessionInfo">
+
+    <TextView
+        android:id="@+id/sessionInfo_label_date"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sessionInfo_element_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/sessionInfo_label_margin_right"
+        android:gravity="center_vertical"
+        android:text="@string/sessionInfo_label_date"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sessionInfo_value_date"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sessionInfo_element_height"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/sessionInfo_label_date"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/sessionInfo_label_sessionNum"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sessionInfo_element_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/sessionInfo_label_date"
+        android:layout_marginRight="@dimen/sessionInfo_label_margin_right"
+        android:gravity="center_vertical"
+        android:text="@string/sessionInfo_label_sessionNum"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sessionInfo_value_sessionNum"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sessionInfo_element_height"
+        android:layout_below="@id/sessionInfo_value_date"
+        android:layout_toRightOf="@id/sessionInfo_label_sessionNum"
+        android:gravity="center_vertical" />
+
+    <Button
+        android:id="@+id/sessionInfo_button_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/sessionInfo_value_sessionNum"
+        android:text="@string/sessionInfo_label_delete_button" />
+
+    <TextView
+        android:id="@+id/sessionInfo_delete_message"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sessionInfo_element_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/sessionInfo_button_delete"
+        android:gravity="center_vertical" />
+
+</RelativeLayout>
